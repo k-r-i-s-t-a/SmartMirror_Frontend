@@ -1,0 +1,93 @@
+.time-card {
+  box-shadow: 0 0.15rem 0 0 #0e161b;
+  border-radius: 0.15rem;
+  border-width: 0.05rem;
+  border-style: solid;
+  border-color: #0e161b;
+  background-color: #21333b;
+  padding-left: 2rem;
+  padding-top: 1rem;
+}
+
+.date-label {
+  color: #eaedf0;
+  font-size: 3rem;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.time-label {
+  color: #eaedf0;
+  font-size: 8rem;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.time-icon {
+  color: #eaedf0;
+  text-align: center;
+}
+
+.weather-card {
+  box-shadow: 0 0.15rem 0 0 #0e161b;
+  border-radius: 0.15rem;
+  border-width: 0.05rem;
+  border-style: solid;
+  border-color: #0e161b;
+  background-color: #21333b;
+  padding-inline-start: 1.5rem;
+  padding-inline-end: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.weather-label {
+  color: #eaedf0;
+  font-size: 5rem;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.forecast-header {
+  text-align: end;
+  color: #eaedf0;
+}
+
+.weather-day-time-label {
+  font-size: 2rem;
+  line-height: normal;
+  color: #eaedf0;
+  letter-spacing: normal;
+}
+
+.appointments-card {
+    box-shadow: 0 0.15rem 0 0 #0e161b;
+    border-radius: 0.15rem;
+    border-width: 0.05rem;
+    border-style: solid;
+    border-color: #0e161b;
+    background-color: #21333b;
+    padding-inline-start: 1.5rem;
+    padding-inline-end: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.appointment-header {
+    text-align: start;
+    color: #eaedf0;
+}
+
+.appointments-description {
+    font-size: 1.5rem;
+    line-height: normal;
+    color: #eaedf0;
+    letter-spacing: normal;
+    padding-left: 1rem;
+}
+
+.appointments-date {
+    font-size: 0.75rem;
+    line-height: normal;
+    color: #eaedf0;
+    letter-spacing: normal;
+    padding-left: 1rem;
+}

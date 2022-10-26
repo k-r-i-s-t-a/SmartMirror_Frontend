@@ -1,0 +1,86 @@
+<div class="main-container">
+    <div class="content-container">
+        <div class="content-area">
+            <div class="clr-row">
+                <div class="clr-col-md-5">
+                    <div class="time-card">
+                        <span class="date-label">{{date}}</span>
+                        <div class="clr-row">
+                            <div class="clr-col-6">
+                                <span class="time-label">{{time}}</span>
+                            </div>
+                            <div *ngIf="+time.split(':')[0] < 20" class="clr-col clr-align-self-center time-icon">
+                                <clr-icon shape="sun" size="142"></clr-icon>
+                            </div>
+                            <div *ngIf="+time.split(':')[0] >= 20" class="clr-col clr-align-self-center time-icon">
+                                <clr-icon shape="moon" size="142"></clr-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clr-row" [style.padding-top]="'1rem'">
+                        <div class="clr-col-12">
+                            <div class="appointments-card">
+                                <div class="clr-row">
+                                    <div class="clr-col-12">
+                                        <h1 class="appointment-header">Upcoming</h1>
+                                        <cds-divider style="--size: 0.2rem" [style.padding-bottom]="'1rem'"></cds-divider>
+                                    </div>
+                                    <table class="table table-noborder">
+                                        <tbody>
+                                            <tr *ngFor="let event of appointments">
+                                                <td><event-icon [day]="(event.start | date: 'dd') || ''" [size]="'1rem'" [color]="event.color"></event-icon></td>
+                                                <td class="left" [style.vertical-align]="'middle'">
+                                                    <span class="appointments-description">{{event.description}}</span><br>
+                                                    <span class="appointments-date">{{event.start | date: 'MMMM d'}} at {{(event.all ? '' : event.start | date: 'HH:mm')}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr *ngIf="appointments.length === 0">
+                                                <td><span [style.font-size]="'1rem'">Keine Termine und leicht einen stehn</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clr-col-md-4 clr-offset-md-3">
+                    <div class="weather-card">
+                        <div class="clr-row">
+                            <div class="clr-col-4">
+                                <weather-icon [iconCode]="iconCode"></weather-icon>
+                            </div>
+                            <div class="clr-col clr-align-self-center">
+                                <span class="weather-label">{{currentTemperature}}°C</span>
+                            </div>
+                        </div>
+                        <div class="clr-row">
+                            <div class="clr-col-12">
+                                <h1 class="forecast-header">Forecast</h1>
+                                <cds-divider style="--size: 0.2rem" [style.padding-bottom]="'1rem'"></cds-divider>
+                            </div>
+                        </div>
+                        <table class="table table-noborder">
+                            <tbody>
+                                <tr *ngFor="let hour of hoursForecast">
+                                    <td><span class="weather-day-time-label">{{hour.timestamp | date: 'HH'}}h</span></td>
+                                    <td><weather-icon [iconCode]="hour.icon" [size]="'0.25rem'"></weather-icon></td>
+                                    <td><span class="weather-day-time-label">{{hour.temperature}}°C</span></td>
+                                    <td></td>
+                                    <td><span class="weather-day-time-label">{{hour.rainProb}}%</span></td>
+                                </tr>
+                                <tr *ngFor="let day of daysForecast">
+                                    <td><span class="weather-day-time-label">{{day.timestamp | date: 'ccc'}}</span></td>
+                                    <td><weather-icon [iconCode]="day.icon" [size]="'0.25rem'"></weather-icon></td>
+                                    <td><span class="weather-day-time-label" [style.color]="'orange'">{{day.maximumTemp}}°C</span></td>
+                                    <td><span class="weather-day-time-label" [style.color]="'#0cf'">{{day.minimumTemp}}°C</span></td>
+                                    <td><span class="weather-day-time-label">{{day.rainProb}}%</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

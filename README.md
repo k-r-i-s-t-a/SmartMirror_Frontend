@@ -1,27 +1,32 @@
-# SmartMirror
+# SmartMirror_Frontend
+This project is the bare frontend fpr the KRISTA smart mirror which can be manually installed on a device which provides a browser.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.1.
+![](/doc/images/mirror.jpg)
 
-## Development server
+# Missing Features
+- apt install package
+- Docker Image
+- CI (pre-build package)
+- configuration app
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Installation
+There are several ways to install and provide the mirror application. 
 
-## Code scaffolding
+## Install through package manager
+Currently only `apt` under `ubuntu xx.xx` is supported.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`$ apt update && apt install krista-mirror`, assuming you are a user with root privileges.  
 
-## Build
+This method also installs a backend which can be used with the KRISTA configuration application. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Use pre-build package
+If you want to host the frontend on your own, you can use the pre-build package from GitHub or use the Docker image `@krista/smart-mirror`. 
+```
+If you host the frontend with the pre-build package, you also need to provide a proxy like apache or nginx. The Docker image already bundled this.
+```
 
-## Running unit tests
+## Configuration
+TODO: add description
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Security
+The files `environment.prod.ts` and `environment.ts` are removed, because they hold API keys. This files will be generated dynamically during build time.

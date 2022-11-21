@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
       class="icon"
       [ngClass]="{
         sunny: iconCode >= 1 && iconCode <= 5 || iconCode == 30,
-        cloudy: iconCode >= 6 && iconCode <= 11 || iconCode == 35,
+        cloudy: iconCode >= 6 && iconCode <= 11 || iconCode >= 35 && iconCode <= 38,
         rainy: iconCode == 12 || iconCode == 18,
         'sun-shower': iconCode == 13 || iconCode == 14,
         'thunder-storm': iconCode > 14 && iconCode <= 17,
@@ -18,8 +18,8 @@ import { Component, Input } from '@angular/core';
       <div class="sun" *ngIf="iconCode >= 1 && iconCode <= 5 || iconCode == 30">
         <div class="rays"></div>
       </div>
-      <div class="cloud" *ngIf="iconCode >= 6 && iconCode <= 11 || iconCode == 35"></div>
-      <div class="cloud" *ngIf="iconCode >= 6 && iconCode <= 11 || iconCode == 35"></div>
+      <div class="cloud" *ngIf="iconCode >= 6 && iconCode <= 11 || iconCode >= 35 && iconCode <= 38"></div>
+      <div class="cloud" *ngIf="iconCode >= 6 && iconCode <= 11 || iconCode >= 35 && iconCode <= 38"></div>
       <div class="cloud" *ngIf="iconCode == 12 || iconCode == 18"></div>
       <div class="rain" *ngIf="iconCode == 12 || iconCode == 18"></div>
       <div class="cloud" *ngIf="iconCode == 13 || iconCode == 14"></div>

@@ -9,8 +9,8 @@ declare var google: any;
 
 @Injectable()
 export class AppService {
-  private readonly ACCU_WEATHER_DAY_FORECAST = `${environment.accuWeatherBaseURL}/daily/5day/${environment.accuWeatherCityKey}?apikey=${environment.accuWeatherApiKey}&metric=true`;
-  private readonly ACCU_WEATHER_HOURS_FORECAST = `${environment.accuWeatherBaseURL}/hourly/12hour/${environment.accuWeatherCityKey}?apikey=${environment.accuWeatherApiKey}&metric=true`;
+  private readonly ACCU_WEATHER_DAY_FORECAST = `${environment.accuWeatherBaseURL}/daily/5day/${environment.accuWeatherCityKey}?apikey=${environment.accuWeatherApiKey}&metric=true&details=true`;
+  private readonly ACCU_WEATHER_HOURS_FORECAST = `${environment.accuWeatherBaseURL}/hourly/12hour/${environment.accuWeatherCityKey}?apikey=${environment.accuWeatherApiKey}&metric=true&details=true`;
 
   private googleTokenClient!: any;
 
@@ -100,11 +100,7 @@ export class AppService {
       callback: async (res: any) => {},
     });
 
-    if (!gapi.client.getToken()) {
-      this.googleTokenClient.requestAccessToken({ prompt: 'consent' });
-    } else {
-      this.googleTokenClient.requestAccessToken({ prompt: '' });
-    }
+    this.googleTokenClient.requestAccessToken({ prompt: '' });
 
     await new Promise<void>((resolve, reject) => {
       this.googleTokenClient.callback = async (res: any) => {

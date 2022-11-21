@@ -1,0 +1,6 @@
+
+*
+!.browserslistrc
+!.env
+!src
+!*.json

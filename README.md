@@ -5,7 +5,6 @@ This project is the bare frontend fpr the KRISTA smart mirror which can be manua
 
 # Missing Features
 - apt install package
-- Docker Image
 - CI (pre-build package)
 - configuration app
 

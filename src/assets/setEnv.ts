@@ -33,8 +33,8 @@ export const environment = {
 `;
 
 if (!existsSync(envDir)) {
-    mkdirSync(envDir);
-  }
+  mkdirSync(envDir);
+}
 
 writeFileUsingFS('./src/environments/environment.prod.ts', '');
 writeFileUsingFS('./src/environments/environment.ts', '');

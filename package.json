@@ -6,6 +6,7 @@
     "config": "ts-node ./src/assets/setEnv.ts",
     "start": "npm run config -- --environment=dev && ng serve",
     "build": "npm run config -- --environment=prod && ng build",
+    "compress": "tar -zcvf smart-mirror.tar.gz dist/smart-mirror/*",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

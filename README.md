@@ -5,7 +5,6 @@ This project is the bare frontend for the KRISTA smart mirror, which can be manu
 
 # Missing Features
 - apt install package
-- CI (pre-build package)
 - configuration app
 
 # Installation
@@ -19,9 +18,10 @@ Currently, only `apt` under `ubuntu xx.xx` is supported.
 This method also installs a backend which can be used with the KRISTA configuration application. 
 
 ## Use pre-build package
-If you want to host the frontend on your own, you can use the pre-build package from GitHub or use the Docker image `@krista/smart-mirror`. 
+If you want to host the frontend on your own, you can use the pre-build package from GitHub or use the Docker image `ghcr.io/k-r-i-s-t-a/smart-mirror` from the GitHub container registry. 
 ```
-If you host the frontend with the pre-build package, you also need to provide a proxy like apache or nginx. The Docker image already bundled this.
+If you host the frontend with the pre-build package, you also need to provide a proxy like apache or nginx. 
+The Docker image already bundled this.
 ```
 ```
 The pre-build package and the docker image only provides the frontend. The hardware device needs to be configured by yourself.

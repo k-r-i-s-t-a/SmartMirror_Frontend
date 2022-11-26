@@ -1,5 +1,5 @@
 # SmartMirror_Frontend
-This project is the bare frontend fpr the KRISTA smart mirror which can be manually installed on a device which provides a browser.
+This project is the bare frontend for the KRISTA smart mirror, which can be manually installed on a device which provides a browser.
 
 ![](/doc/images/mirror.jpg)
 
@@ -12,7 +12,7 @@ This project is the bare frontend fpr the KRISTA smart mirror which can be manua
 There are several ways to install and provide the mirror application. 
 
 ## Install through package manager
-Currently only `apt` under `ubuntu xx.xx` is supported.
+Currently, only `apt` under `ubuntu xx.xx` is supported.
 
 `$ apt update && apt install krista-mirror`, assuming you are a user with root privileges.  
 
@@ -23,9 +23,13 @@ If you want to host the frontend on your own, you can use the pre-build package 
 ```
 If you host the frontend with the pre-build package, you also need to provide a proxy like apache or nginx. The Docker image already bundled this.
 ```
+```
+The pre-build package and the docker image only provides the frontend. The hardware device needs to be configured by yourself.
+This could be deactivating of the screen or other energy saving methods.
+```
 
 ## Configuration
 TODO: add description
 
 # Security
-The files `environment.prod.ts` and `environment.ts` are removed, because they hold API keys. This files will be generated dynamically during build time.
+The files `environment.prod.ts` and `environment.ts` were removed because they held API keys. This files will be generated dynamically during build time.

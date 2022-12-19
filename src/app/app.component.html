@@ -67,14 +67,14 @@
                                     <td><weather-icon [iconCode]="hour.icon" [size]="'0.25rem'"></weather-icon></td>
                                     <td><span class="weather-day-time-label">{{hour.temperature}}°C</span></td>
                                     <td></td>
-                                    <td><span class="weather-day-time-label">{{hour.rainProb}}%</span></td>
+                                    <td><span class="weather-day-time-label">{{hour.rain}}mm</span></td>
                                 </tr>
                                 <tr *ngFor="let day of daysForecast">
                                     <td><span class="weather-day-time-label">{{day.timestamp | date: 'ccc'}}</span></td>
                                     <td><weather-icon [iconCode]="day.icon" [size]="'0.25rem'"></weather-icon></td>
                                     <td><span class="weather-day-time-label" [style.color]="'orange'">{{day.maximumTemp}}°C</span></td>
                                     <td><span class="weather-day-time-label" [style.color]="'#0cf'">{{day.minimumTemp}}°C</span></td>
-                                    <td><span class="weather-day-time-label">{{day.rainProb}}%</span></td>
+                                    <td><span class="weather-day-time-label">{{day.rain}}mm</span></td>
                                 </tr>
                             </tbody>
                         </table>

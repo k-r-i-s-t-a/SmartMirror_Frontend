@@ -21,9 +21,8 @@ const content = `
 export const environment = {
   production: ${isProd},
 
-  accuWeatherBaseURL: 'https://dataservice.accuweather.com/forecasts/v1',
-  accuWeatherApiKey: '${process.env["ACCU_WEATHER_API_KEY"]}',
-  accuWeatherCityKey: '168717',
+  openMeteoLatitude: '51.32',
+  openMeteoLongitude: '9.50',
 
   googleCalendarBaseURL: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
   googleClientId: '${process.env["GOOGLE_CALENDAR_CLIENT_ID"]}',

@@ -9,19 +9,22 @@ declare var google: any;
 
 @Injectable()
 export class AppService {
-  private readonly ACCU_WEATHER_DAY_FORECAST = `${environment.accuWeatherBaseURL}/daily/5day/${environment.accuWeatherCityKey}?apikey=${environment.accuWeatherApiKey}&metric=true&details=true`;
-  private readonly ACCU_WEATHER_HOURS_FORECAST = `${environment.accuWeatherBaseURL}/hourly/12hour/${environment.accuWeatherCityKey}?apikey=${environment.accuWeatherApiKey}&metric=true&details=true`;
+  private readonly OPEN_METEO_FORECAST;
 
   private googleTokenClient!: any;
 
-  constructor(private http: HttpClient) {}
+  private todayStart;
+  private todayEnd;
 
-  getWeatherDayData(): Observable<any> {
-    return this.http.get(this.ACCU_WEATHER_DAY_FORECAST);
+  constructor(private http: HttpClient) {
+    this.todayStart = new Date();
+    this.todayEnd = new Date();
+
+    this.OPEN_METEO_FORECAST = `https://api.open-meteo.com/v1/forecast?latitude=${environment.openMeteoLatitude}&longitude=${environment.openMeteoLongitude}&hourly=temperature_2m,rain,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min,rain_sum&timezone=Europe%2FBerlin&start_date=${this.todayStart.toISOString().substring(0, 10)}&end_date=${new Date(this.todayStart.getTime() + 1000 * 60 * 60 * 24 * 3).toISOString().substring(0, 10)}`;  
   }
 
-  getWeatherHoursData(): Observable<any> {
-    return this.http.get(this.ACCU_WEATHER_HOURS_FORECAST);
+  getWeatherData(): Observable<any> {
+    return this.http.get(this.OPEN_METEO_FORECAST);
   }
 
   async getTodayAppointments(): Promise<any> {
@@ -42,18 +45,15 @@ export class AppService {
           continue;
         }
         // Create a request for each calendar to retrieve all events of the day and add it to a bulk action
-        const todayStart = new Date();
-        const todayEnd = new Date();
-
-        todayStart.setHours(0);
-        todayStart.setMinutes(0);
-        todayEnd.setHours(23);
-        todayEnd.setMinutes(59);
+        this.todayStart.setHours(0);
+        this.todayStart.setMinutes(0);
+        this.todayEnd.setHours(23);
+        this.todayEnd.setMinutes(59);
 
         const getEvents = gapi.client.calendar.events.list({
           calendarId: c.id,
-          timeMin: todayStart.toISOString(),
-          timeMax: todayEnd.toISOString(),
+          timeMin: this.todayStart.toISOString(),
+          timeMax: this.todayEnd.toISOString(),
           singleEvents: true,
           orderBy: 'startTime',
         });

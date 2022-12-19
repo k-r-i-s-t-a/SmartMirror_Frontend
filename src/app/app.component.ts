@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { Subscription, timer, zip } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 import { AppService } from './app.service';
 import { AppUtil } from './app.util';
 
@@ -34,13 +34,8 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     this.weatherPeriodic = timer(0, 1000 * 60 * 60).subscribe(() => {
-      zip(
-        this.appService.getWeatherDayData(),
-        this.appService.getWeatherHoursData()
-      ).subscribe({
-        next: (data) => {
-          this.transformWeatherData(this.parseWeatherData(data));
-        },
+      this.appService.getWeatherData().subscribe({
+        next: (data) => this.transformWeatherData(this.parseWeatherData(data)),
         error: (error) => console.error(error),
       });
     });
@@ -64,23 +59,29 @@ export class AppComponent implements OnInit, OnDestroy {
       daysForecast: new Array(),
       hoursForecast: new Array(),
     };
-    for (const elem of data[0].DailyForecasts) {
+
+    const now = new Date();
+    for (var i = 0; i < data.daily.time.length; i++) {
       result.daysForecast.push({
-        timestamp: elem.Date,
-        minimumTemp: elem.Temperature.Minimum.Value,
-        maximumTemp: elem.Temperature.Maximum.Value,
-        icon: elem.Day.Icon,
-        rainProb: elem.Day.RainProbability || 0,
+        timestamp: data.daily.time[i],
+        minimumTemp: data.daily.temperature_2m_min[i],
+        maximumTemp: data.daily.temperature_2m_max[i],
+        icon: data.daily.weathercode[i],
+        rain: data.daily.rain_sum[i],
       });
     }
 
-    for (const elem of data[1]) {
-      result.hoursForecast.push({
-        timestamp: elem.DateTime,
-        temperature: elem.Temperature.Value,
-        icon: elem.WeatherIcon,
-        rainProb: elem.RainProbability || 0,
-      });
+    // 24, because in the time array, the first 24 elements are timestamps from the current day, the can be skipped
+    for (var i = 0; i < 24; i++) {
+      const time = new Date(data.hourly.time[i]);
+      if (time.getHours() > now.getHours() && time.getHours() <= now.getHours() + 3) {
+        result.hoursForecast.push({
+          timestamp: time,
+          temperature: data.hourly.temperature_2m[i],
+          icon: data.hourly.weathercode[i],
+          rain: data.hourly.rain[i],
+        });
+      }
     }
 
     return result;
@@ -88,7 +89,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private transformWeatherData(data: any) {
     this.daysForecast = data.daysForecast.slice(1, 4);
-    this.hoursForecast = data.hoursForecast.slice(0, 3);
+    this.hoursForecast = data.hoursForecast;
 
     const currentTempDate = this.hoursForecast[0];
     this.currentTemperature = currentTempDate.temperature;
@@ -107,6 +108,6 @@ export class AppComponent implements OnInit, OnDestroy {
       });
     }
 
-    this.appointments = this.util.sortAppointments(temp);
+    // this.appointments = this.util.sortAppointments(temp);
   }
 }

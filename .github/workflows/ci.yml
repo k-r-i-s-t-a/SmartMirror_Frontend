@@ -42,7 +42,7 @@ jobs:
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "smart-mirror.tar.gz"
+          artifacts: "smart-mirror-${{ needs.pre-build.outputs.version }}.tar.gz"
           body: "A new awesome release!"
           tag: ${{ needs.pre-build.outputs.version }}
           skipIfReleaseExists: true
@@ -57,7 +57,6 @@ jobs:
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1.3
         with:
-          envkey_ACCU_WEATHER_API_KEY: ${{ secrets.ACCU_WEATHER_API_KEY }}
           envkey_GOOGLE_CALENDAR_CLIENT_ID: ${{ secrets.GOOGLE_CALENDAR_CLIENT_ID }}
           envkey_GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
       - name: Build the Docker image

@@ -1,13 +1,13 @@
 {
   "name": "smart-mirror",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "config": "ts-node ./src/assets/setEnv.ts",
     "start": "npm run config -- --environment=dev && ng serve",
     "build": "npm run config -- --environment=prod && ng build",
-    "compress": "tar -zcvf smart-mirror.tar.gz dist/smart-mirror/*",
+    "compress": "tar -zcvf smart-mirror-v0.7.0.tar.gz dist/smart-mirror/*",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

@@ -108,6 +108,6 @@ export class AppComponent implements OnInit, OnDestroy {
       });
     }
 
-    // this.appointments = this.util.sortAppointments(temp);
+    this.appointments = this.util.sortAppointments(temp);
   }
 }

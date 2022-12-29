@@ -21,10 +21,10 @@ This method also installs a backend which can be used with the KRISTA configurat
 If you want to host the frontend on your own, you can use the pre-build package from GitHub or use the Docker image `ghcr.io/k-r-i-s-t-a/smart-mirror` from the GitHub container registry. 
 ```
 If you host the frontend with the pre-build package, you also need to provide a proxy like apache or nginx. 
-The Docker image already bundled this.
+The Docker Image already bundled this.
 ```
 ```
-The pre-build package and the docker image only provides the frontend. The hardware device needs to be configured by yourself.
+The pre-build package and the Docker Image only provides the frontend. The hardware device needs to be configured by yourself.
 This could be deactivating of the screen or other energy saving methods.
 ```
 
